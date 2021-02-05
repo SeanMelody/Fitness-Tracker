@@ -43,9 +43,9 @@ app.get("/connected", (req, res) => {
 
 app.get("/all", (req, res) => {
     // console.log(db.Exercise)
-    db.Exercise.find({ type: "resistance" })
-        .then(dbExercise => {
-            res.json(dbExercise);
+    db.Resistance.find({})
+        .then(dbResistance => {
+            res.json(dbResistance);
         })
         .catch(err => {
             res.json(err);
