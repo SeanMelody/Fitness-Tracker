@@ -11,7 +11,9 @@ const htmlRoute = require('./routes/htmlRoutes.js');
 
 const PORT = process.env.PORT || 3003;
 
-// const db = require("./seeders/seed.js");
+// const Workouts = require("./seeders/seed.js");
+
+const db = require("./models");
 
 const app = express();
 
@@ -32,6 +34,22 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
+});
+
+
+app.get("/connected", (req, res) => {
+    res.send("connected correctly");
+});
+
+app.get("/all", (req, res) => {
+    // console.log(db.Exercise)
+    db.Exercise.find({ type: "resistance" })
+        .then(dbExercise => {
+            res.json(dbExercise);
+        })
+        .catch(err => {
+            res.json(err);
+        });
 });
 
 // Start the server
