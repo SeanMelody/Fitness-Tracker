@@ -52,6 +52,18 @@ app.get("/all", (req, res) => {
         });
 });
 
+
+app.get("/api/workouts", (req, res) => {
+    db.Exercises.find({})
+        .then(dbExercises => {
+            res.json(dbExercises)
+        })
+        .catch(err => {
+            res.json(err)
+        })
+
+})
+
 // Start the server
 app.listen(PORT, () => {
     console.log(`Listening at http://localhost:${PORT}`);
