@@ -13,7 +13,9 @@ const PORT = process.env.PORT || 3003;
 
 // const Workouts = require("./seeders/seed.js");
 
-const db = require("./models");
+const Workout = require("./models");
+// const Workout = require("./models");
+// const Workout = require("./models");
 
 const app = express();
 
@@ -36,6 +38,62 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
     useCreateIndex: true,
 });
 
+//***************************************** */
+//TEST
+// const mongoose = require("mongoose");
+
+// const Schema = mongoose.Schema;
+
+// const WorkoutSchema = new Schema({
+//     day: {
+//         type: Date,
+//         default: Date.now
+//     },
+//     exercises: [{
+//         type: String,
+//         name: String,
+//         duration: Number,
+//         weight: Number,
+//         reps: Number,
+//         sets: Number,
+//     }]
+// });
+
+// const Workout = mongoose.model("Workout", WorkoutSchema);
+
+
+const data = {
+    day: new Date().setDate(new Date().getDate() - 9),
+    exercises: [{
+        type: "Yoga",
+        name: "Daily Practice",
+        duration: 10,
+        weight: 205,
+        reps: 1,
+        sets: 1,
+    }]
+}
+
+Workout.create(data)
+    .then((dbWorkout) => {
+        console.log(dbWorkout)
+    })
+    .catch(({ message }) => {
+        console.log(message)
+    })
+
+
+
+// (async () => {
+//     const newWorkout = new Workout(data)
+
+//     await newWorkout.save()
+
+//     console.log(newWorkout)
+// })();
+
+//END TEST
+//***************************************** */
 
 app.get("/connected", (req, res) => {
     res.send("connected correctly");
@@ -43,26 +101,72 @@ app.get("/connected", (req, res) => {
 
 app.get("/all", (req, res) => {
     // console.log(db.Exercise)
-    db.Resistance.find({})
-        .then(dbResistance => {
-            res.json(dbResistance);
+    Workout.find({})
+        .then(Workout => {
+            res.json(Workout);
         })
         .catch(err => {
             res.json(err);
         });
 });
 
-
-app.get("/api/workouts", (req, res) => {
-    db.Exercises.find({})
-        .then(dbExercises => {
-            res.json(dbExercises)
+app.get("/api/workouts/range", (req, res) => {
+    // console.log(db.Exercise)
+    Workout.find({})
+        .then(Workout => {
+            res.json(Workout);
         })
         .catch(err => {
-            res.json(err)
-        })
+            res.json(err);
+        });
+});
 
-})
+// db.Exercises.create({ type: "resistance" })
+//     .then(dbExercises => {
+//         console.log(dbExercises)
+//     })
+//     .catch(({ message }) => {
+//         console.log(message)
+//     })
+
+
+// app.post("/stats", (req, res) => {
+//     console.log(req.body)
+//     const workout = new Workout(body);
+
+//     Workout.create(body)
+//         .then(dbWorkout => {
+//             res.json(dbWorkout)
+//         })
+//         .catch(err => {
+//             res.json(err)
+//         })
+
+// })
+
+
+
+// app.get("/api/workouts", (req, res) => {
+//     // console.log(req.body)
+//     console.log(db.Workout)
+//     console.log("line 66")
+
+//     db.Workout.find({})
+//         .then(dbWorkout => {
+//             res.json(dbWorkout)
+//         })
+//         .catch(err => {
+//             res.json(err)
+//         })
+
+// })
+
+// app.get("/api/workouts/range", (req, res) => {
+//     // console.log(req.body)
+//     console.log(db.workout)
+//     console.log("line 82")
+// })
+
 
 // Start the server
 app.listen(PORT, () => {
