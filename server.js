@@ -125,22 +125,35 @@ app.get("/all", (req, res) => {
         });
 });
 
-app.get("api/workouts", (req, res) => {
-    // console.log(db.Exercise)
+app.post("/api/workouts", (req, res) => {
+    console.log(Workout)
     Workout.find({})
         .then(Workout => {
             res.json(Workout);
         })
         .catch(err => {
             res.json(err);
-        });
+        })
 });
+
+app.get("/api/workouts", (req, res) => {
+    console.log(Workout)
+    Workout.find({})
+        .then(Workout => {
+            res.json(Workout);
+        })
+        .catch(err => {
+            res.json(err);
+        })
+});
+
+
 
 app.get("/api/workouts/range", (req, res) => {
     // console.log(db.Exercise)
     Workout.find({ type: "resistance" })
-        .then(Workout => {
-            res.json(Workout);
+        .then(dbWorkout => {
+            res.json(dbWorkout);
         })
         .catch(err => {
             res.json(err);
@@ -150,8 +163,8 @@ app.get("/api/workouts/range", (req, res) => {
 app.get("/api/workouts/range", (req, res) => {
     // console.log(db.Exercise)
     Workout.find({ type: "cardio" })
-        .then(Workout => {
-            res.json(Workout);
+        .then(dbWorkout => {
+            res.json(dbWorkout);
         })
         .catch(err => {
             res.json(err);
