@@ -6,7 +6,7 @@ const mongoose = require("mongoose");
 // Access Routes
 const htmlRoute = require('./routes/htmlRoutes.js');
 // const apiRoute = require('./routes/apiRoutes.js');
-// const authorRouter = require('./routes/author-api-routes.js');
+
 
 
 const PORT = process.env.PORT || 3003;
@@ -62,39 +62,70 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
 // const Workout = mongoose.model("Workout", WorkoutSchema);
 
 
-const data = {
-    day: new Date().setDate(new Date().getDate() - 9),
-    exercises: [{
-        type: "yoga",
-        name: "Daily Practice",
-        duration: 10,
-        weight: 205,
-        reps: 1,
-        sets: 1,
-    }]
-}
+// const data = {
+//     day: new Date().setDate(new Date().getDate() - 9),
+//     exercises: [{
+//         type: "yoga",
+//         name: "Daily Practice",
+//         duration: 10,
+//         weight: 205,
+//         reps: 1,
+//         sets: 1,
+//     }]
+// }
 
-const data1 = {
-    day: new Date().setDate(new Date().getDate() - 8),
-    exercises: [
-        {
-            type: "resistance",
-            name: "Bicep Curl",
-            duration: 20,
-            weight: 100,
-            reps: 10,
-            sets: 4
-        }
-    ]
-}
+// const data1 = {
+//     day: new Date().setDate(new Date().getDate() - 8),
+//     exercises: [
+//         {
+//             type: "resistance",
+//             name: "Bicep Curl",
+//             duration: 25,
+//             weight: 100,
+//             reps: 10,
+//             sets: 4
+//         }
+//     ]
+// }
 
-Workout.create(data1)
-    .then((dbWorkout) => {
-        console.log(dbWorkout)
-    })
-    .catch(({ message }) => {
-        console.log(message)
-    })
+// Workout.create(data1)
+//     .then((dbWorkout) => {
+//         console.log(dbWorkout)
+//     })
+//     .catch(({ message }) => {
+//         console.log(message)
+//     })
+
+
+app.put("/api/workouts/:id", (req, res) => {
+    console.log(req.body)
+    console.log("line102")
+    const workout = new Workout(req.body)
+    console.log(workout)
+    Workout.create({})
+        .then(dbWorkout => {
+            res.json(dbWorkout);
+        })
+        .catch(err => {
+            res.json(err)
+        })
+
+})
+
+app.post("/api/workouts", (req, res) => {
+    console.log(req.body)
+    console.log("line116")
+    const workout = new Workout(req.body)
+    Workout.create({ workout })
+        .then(dbWorkout => {
+            res.json(dbWorkout);
+        })
+        .catch(err => {
+            res.json(err)
+        })
+
+})
+
 
 
 
@@ -117,8 +148,8 @@ app.get("/connected", (req, res) => {
 app.get("/all", (req, res) => {
     // console.log(db.Exercise)
     Workout.find({})
-        .then(Workout => {
-            res.json(Workout);
+        .then(dbWorkout => {
+            res.json(dbWorkout);
         })
         .catch(err => {
             res.json(err);
@@ -126,21 +157,38 @@ app.get("/all", (req, res) => {
 });
 
 app.post("/api/workouts", (req, res) => {
-    console.log(Workout)
-    Workout.find({})
-        .then(Workout => {
-            res.json(Workout);
+    const workout = new Workout(req.body)
+    console.log("line 130")
+    console.log(req.body)
+    Workout.create(req.body)
+        .then(dbWorkout => {
+            res.json(dbWorkout);
         })
         .catch(err => {
             res.json(err);
         })
 });
 
+// app.put("/api/workouts", (req, res) => {
+//     console.log(req.body)
+//     console.log("line142")
+//     const workout = new Workout(req.body)
+//     Workout.create({})
+//         .then(dbWorkout => {
+//             res.json(dbWorkout);
+//         })
+//         .catch(err => {
+//             res.json(err)
+//         })
+
+// })
+
 app.get("/api/workouts", (req, res) => {
-    console.log(Workout)
+    console.log("line 142")
+    // console.log(Workout.exercises)
     Workout.find({})
-        .then(Workout => {
-            res.json(Workout);
+        .then(dbWorkout => {
+            res.json(dbWorkout);
         })
         .catch(err => {
             res.json(err);
@@ -171,16 +219,19 @@ app.get("/api/workouts/range", (req, res) => {
         });
 });
 
-app.put("/api/workouts/:id", (req, res) => {
-    Workout.create(req.params.id)
-        .then(dbWorkout => {
-            res.json(dbWorkout);
-        })
-        .catch(err => {
-            res.json(err)
-        })
+// app.put("/api/workouts/:id", (req, res) => {
+//     console.log(req.body)
+//     console.log("line178")
+//     const workout = new Workout(req.body)
+//     Workout.create({ workout })
+//         .then(dbWorkout => {
+//             res.json(dbWorkout);
+//         })
+//         .catch(err => {
+//             res.json(err)
+//         })
 
-})
+// })
 
 // db.Exercises.create({ type: "resistance" })
 //     .then(dbExercises => {

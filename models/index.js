@@ -17,26 +17,34 @@ const WorkoutSchema = new Schema({
         type: Date,
         default: Date.now
     },
-    exercises: [{
-        type: {
-            type: String,
+    exercises: [
+        {
+            type: {
+                type: String,
+                // default: "climbing",
+            },
+            name: {
+                type: String,
+                // default: "danger",
+            },
+            duration: {
+                type: Number,
+                // default: 100,
+            },
+            weight: {
+                type: Number,
+                // default: 100,
+            },
+            reps: {
+                type: Number,
+                // default: 100,
+            },
+            sets: {
+                type: Number,
+                // default: 100,
+            },
         },
-        name: {
-            type: String,
-        },
-        duration: {
-            type: Number,
-        },
-        weight: {
-            type: Number,
-        },
-        reps: {
-            type: Number,
-        },
-        sets: {
-            type: Number,
-        },
-    }]
+    ],
 });
 
 // END TEST SCHEMA
