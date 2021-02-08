@@ -65,7 +65,7 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
 const data = {
     day: new Date().setDate(new Date().getDate() - 9),
     exercises: [{
-        type: "Yoga",
+        type: "yoga",
         name: "Daily Practice",
         duration: 10,
         weight: 205,
@@ -74,7 +74,21 @@ const data = {
     }]
 }
 
-Workout.create(data)
+const data1 = {
+    day: new Date().setDate(new Date().getDate() - 8),
+    exercises: [
+        {
+            type: "resistance",
+            name: "Bicep Curl",
+            duration: 20,
+            weight: 100,
+            reps: 10,
+            sets: 4
+        }
+    ]
+}
+
+Workout.create(data1)
     .then((dbWorkout) => {
         console.log(dbWorkout)
     })
@@ -99,7 +113,19 @@ app.get("/connected", (req, res) => {
     res.send("connected correctly");
 });
 
+
 app.get("/all", (req, res) => {
+    // console.log(db.Exercise)
+    Workout.find({})
+        .then(Workout => {
+            res.json(Workout);
+        })
+        .catch(err => {
+            res.json(err);
+        });
+});
+
+app.get("api/workouts", (req, res) => {
     // console.log(db.Exercise)
     Workout.find({})
         .then(Workout => {
@@ -112,7 +138,7 @@ app.get("/all", (req, res) => {
 
 app.get("/api/workouts/range", (req, res) => {
     // console.log(db.Exercise)
-    Workout.find({})
+    Workout.find({ type: "resistance" })
         .then(Workout => {
             res.json(Workout);
         })
@@ -120,6 +146,28 @@ app.get("/api/workouts/range", (req, res) => {
             res.json(err);
         });
 });
+
+app.get("/api/workouts/range", (req, res) => {
+    // console.log(db.Exercise)
+    Workout.find({ type: "cardio" })
+        .then(Workout => {
+            res.json(Workout);
+        })
+        .catch(err => {
+            res.json(err);
+        });
+});
+
+app.put("/api/workouts/:id", (req, res) => {
+    Workout.create(req.params.id)
+        .then(dbWorkout => {
+            res.json(dbWorkout);
+        })
+        .catch(err => {
+            res.json(err)
+        })
+
+})
 
 // db.Exercises.create({ type: "resistance" })
 //     .then(dbExercises => {
