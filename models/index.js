@@ -21,7 +21,7 @@ const WorkoutSchema = new Schema({
         {
             type: {
                 type: String,
-                // default: "climbing",
+                default: "climbing",
             },
             name: {
                 type: String,
