@@ -2,15 +2,13 @@ const Workout = require("../models");
 
 module.exports = (app) => {
 
+    // App.Put to send the new Workout to the database
     app.put("/api/workouts/:id", (req, res) => {
-        console.log(req.params)
-        console.log(req.body)
-        console.log("line 102")
+        // console.log(req.params)
+        // console.log(req.body)
+        console.log("line 09")
         const newWorkout = req.body
         console.log(newWorkout)
-
-
-
 
         Workout.create({ exercises: [newWorkout] })
             .then(dbWorkout => {
@@ -19,17 +17,18 @@ module.exports = (app) => {
             .catch(err => {
                 res.json(err)
             })
-        const workout = new Workout(req.body)
-        console.log(workout)
-        console.log(workout.id)
-        console.log("line 102")
+        // const workout = new Workout(req.body)
+        // console.log(workout)
+        // console.log(workout.id)
+        // console.log("line 23")
     })
 
+    // App.Post to update the workout.
     app.post("/api/workouts", (req, res) => {
         console.log(req.body)
-        console.log("line116")
-        const workout = new Workout(req.body)
-        Workout.updateOne()
+        console.log("line 29")
+        // const workout = new Workout(req.body)
+        Workout.findByIdAndUpdate()
             .then(dbWorkout => {
                 res.json(dbWorkout);
             })
@@ -39,11 +38,12 @@ module.exports = (app) => {
 
     })
 
+    // App.get to let me know that the database is connected
     app.get("/connected", (req, res) => {
         res.send("connected correctly");
     });
 
-
+    // App.get all to let me check the database.
     app.get("/all", (req, res) => {
         // console.log(db.Exercise)
         Workout.find({})
@@ -55,9 +55,9 @@ module.exports = (app) => {
             });
     });
 
-
+    // App.get to find all the workouts
     app.get("/api/workouts", (req, res) => {
-        console.log("line 142")
+        console.log("line 60")
         // console.log(Workout.exercises)
         Workout.find({})
             .then(dbWorkout => {
@@ -70,20 +70,31 @@ module.exports = (app) => {
 
 
 
-    app.get("/api/workouts/range", (req, res) => {
-        // console.log(db.Exercise)
-        Workout.find({ type: "resistance" })
-            .then(dbWorkout => {
-                res.json(dbWorkout);
-            })
-            .catch(err => {
-                res.json(err);
-            });
-    });
+    app.get("/cardio", (req, res) => {
+        // cardioWorkouts = []
+        // Workout.find({})
+        //     .then(dbWorkout => {
+        //         res.json(dbWorkout);
+        //         // cardioWorkouts.push(dbWorkout)
+        //         // console.log(dbWorkout)
+        //     })
+        //     .catch(err => {
+        //         res.json(err);
+        //     });
+        cardio = "cardio"
+
+        Workout.find({ type: "cardio" }, (err, found) => {
+            if (err) {
+                res.send(err)
+            } else {
+                res.json(found)
+            }
+        });
+    })
 
     app.get("/api/workouts/range", (req, res) => {
         // console.log(db.Exercise)
-        Workout.find({ type: "cardio" })
+        Workout.find({})
             .then(dbWorkout => {
                 res.json(dbWorkout);
             })
