@@ -22,8 +22,8 @@ function generatePalette() {
 }
 
 function populateChart(data) {
-  console.log(data)
-  console.log(data[0].exercises[0].duration)
+  // console.log(data)
+  // console.log(data[0].exercises[0].duration)
 
   // FOr loop to find total duration
   // let durationTotal = 0

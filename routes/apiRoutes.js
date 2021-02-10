@@ -28,22 +28,26 @@ module.exports = (app) => {
 
     // App.Put to send the new Workout to the database
     app.put("/api/workouts/:id", ({ body, params }, res) => {
-
+        // console.log(body, params)
         const newWorkoutId = params.id;
-        let pastExercises = [];
+        let totalExercises = [];
 
+        // gets all the currently saved exercises in the current workout
         db.Workout.find({ _id: newWorkoutId })
             .then(dbWorkout => {
-                pastExercises = dbWorkout[0].exercises
+                // console.log(dbWorkout)
+                totalExercises = dbWorkout[0].exercises;
                 res.json(dbWorkout[0].exercises);
-                let allExercises = [...pastExercises, body]
+                let allExercises = [...totalExercises, body]
+                console.log(allExercises)
                 updateWorkout(allExercises)
             })
             .catch(err => {
-                res.json(err)
-            })
+                res.json(err);
+            });
+
         function updateWorkout(exercises) {
-            db.Workout.findByIdAndUpdate(workoutId, { exercises: exercises }, function (err, doc) {
+            db.Workout.findByIdAndUpdate(newWorkoutId, { exercises: exercises }, function (err, doc) {
                 if (err) {
                     console.log(err)
                 }
@@ -79,7 +83,7 @@ module.exports = (app) => {
     // App.get all to let me check the database.
     app.get("/all", (req, res) => {
         // console.log(db.Exercise)
-        Workout.find({})
+        db.Workout.find({})
             .then(dbWorkout => {
                 res.json(dbWorkout);
             })

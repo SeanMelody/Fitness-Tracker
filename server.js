@@ -22,8 +22,7 @@ app.use(express.static("public"));
 // Set the PORT for Heroku deployment or to 3003 cause I'm crazy!
 const PORT = process.env.PORT || 3003;
 
-
-
+// require the databse models folder (index and then workout.js)
 const db = require("./models");
 
 // Invoke routes
@@ -35,6 +34,7 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
+    useFindAndModify: false
 });
 
 
