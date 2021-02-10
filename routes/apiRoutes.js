@@ -68,30 +68,6 @@ module.exports = (app) => {
             })
     });
 
-
-
-    app.get("/cardio", (req, res) => {
-        // cardioWorkouts = []
-        // Workout.find({})
-        //     .then(dbWorkout => {
-        //         res.json(dbWorkout);
-        //         // cardioWorkouts.push(dbWorkout)
-        //         // console.log(dbWorkout)
-        //     })
-        //     .catch(err => {
-        //         res.json(err);
-        //     });
-        cardio = "cardio"
-
-        Workout.find({ type: "cardio" }, (err, found) => {
-            if (err) {
-                res.send(err)
-            } else {
-                res.json(found)
-            }
-        });
-    })
-
     app.get("/api/workouts/range", (req, res) => {
         // console.log(db.Exercise)
         Workout.find({})
@@ -102,6 +78,19 @@ module.exports = (app) => {
                 res.json(err);
             });
     });
+
+    app.get("/api/workouts/range", (req, res) => {
+        // console.log(db.Exercise)
+        Workout.aggregate({ $add: [duration] })
+            .then(dbWorkout => {
+                res.json(dbWorkout);
+            })
+            .catch(err => {
+                res.json(err);
+            });
+    });
+
+    // db.sales.aggregate( [ { $project: { item: 1, total: { $subtract: [ { $add: [ "$price", "$fee" ] }, "$discount" ] } } } ] )
 
 
     // CODE WITH PABLO
