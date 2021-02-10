@@ -1,3 +1,4 @@
+// Async function to gt the initial workout
 async function initWorkout() {
   const lastWorkout = await API.getLastWorkout();
   console.log("Last workout:", lastWorkout);
@@ -18,7 +19,7 @@ async function initWorkout() {
     renderNoWorkoutText()
   }
 }
-
+// Function to get the exercies
 function tallyExercises(exercises) {
   const tallied = exercises.reduce((acc, curr) => {
     if (curr.type === "resistance") {
@@ -44,6 +45,7 @@ function formatDate(date) {
   return new Date(date).toLocaleDateString(options);
 }
 
+// Function to get the wokrout summary and display to the homepage
 function renderWorkoutSummary(summary) {
   const container = document.querySelector(".workout-stats");
 
@@ -71,6 +73,7 @@ function renderWorkoutSummary(summary) {
   });
 }
 
+// Function to dispay content if there are not workouts in the database
 function renderNoWorkoutText() {
   const container = document.querySelector(".workout-stats");
   const p = document.createElement("p");
@@ -81,4 +84,5 @@ function renderNoWorkoutText() {
   container.appendChild(p);
 }
 
+// Call the initial workout function
 initWorkout();

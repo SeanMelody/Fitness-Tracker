@@ -2,6 +2,7 @@
 const express = require("express");
 // Logger helps development by giving network information in the console.
 const logger = require("morgan");
+// Mongoose project!
 const mongoose = require("mongoose");
 
 // Access Routes

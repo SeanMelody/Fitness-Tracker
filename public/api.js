@@ -1,4 +1,6 @@
+// Async Api Request
 const API = {
+  // API GET await request to get the last workout and send to the index page
   async getLastWorkout() {
     let res;
     try {
@@ -7,9 +9,11 @@ const API = {
       console.log(err)
     }
     const json = await res.json();
-
+    // Return the last item
     return json[json.length - 1];
   },
+
+  // API PUT await request to add an exercise
   async addExercise(data) {
     const id = location.search.split("=")[1];
 
@@ -23,6 +27,8 @@ const API = {
 
     return json;
   },
+
+  // API POST await request to post to the database 
   async createWorkout(data = {}) {
     const res = await fetch("/api/workouts", {
       method: "POST",
@@ -35,6 +41,7 @@ const API = {
     return json;
   },
 
+  // API GET await request to get the workouts for the stats page
   async getWorkoutsInRange() {
     const res = await fetch(`/api/workouts/range`);
     const json = await res.json();

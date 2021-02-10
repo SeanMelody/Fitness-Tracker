@@ -50,13 +50,13 @@ const workoutSchema = new Schema(
 
 // Add the Virtual Total Duration to get the exercises Lengths
 workoutSchema.virtual("totalDuration").get(function () {
-    // Just get the sums!
+    // Just get the sums of the exercise lengths
     return this.exercises.reduce((total, exercise) => {
         return total + exercise.duration;
     }, 0);
 });
 
-// Const for the Mongoose Database 
+// Const for the Mongoose Database
 const Workout = mongoose.model("Workout", workoutSchema);
 
 // Gotta Module Export it!

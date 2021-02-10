@@ -3,22 +3,30 @@
 
 <head>
   <meta charset="UTF-8" />
+  <!-- Meta tags for widths -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <!-- Ajax Link -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" />
+  <!-- CSS link -->
   <link rel="stylesheet" href="style.css" />
+  <!-- FAVICON -->
+  <link rel="icon" type="image/png" href="Favicon.png" />
   <title>Fitness Tracker</title>
 </head>
 
 <body>
   <nav>
+    <!-- Links to the pages in the navbar-->
     <a href="/">Fitness Tracker</a>
     <a href="/stats">Dashboard</a>
   </nav>
   <div class="wrapper">
     <header>
+      <!-- Title -->
       <h1>Fitness Tracker</h1>
     </header>
+    <!-- Exercise container to input data-->
     <div class="ui container exercise">
       <div class="ui raised card m-auto">
         <h2>Add Your Exercise</h2>
@@ -26,11 +34,13 @@
           <div class="workout-type">
             <label for="type">Exercise Type:</label>
             <select name="type" id="type">
+              <!-- Select the workout type, Resistance or Cardio -->
               <option disabled selected>Select Exercise Type</option>
               <option value="resistance">Resistance</option>
               <option value="cardio">Cardio</option>
             </select>
           </div>
+          <!-- Div for if Cardio is selected -->
           <div class="cardio-form d-none">
             <div class="cardio-name">
               <label for="cardio-name">Name:</label>
@@ -45,6 +55,7 @@
               <input type="number" name="duration" id="duration" placeholder="10" />
             </div>
           </div>
+          <!-- Div for if Resistance is selected -->
           <div class="resistance-form d-none">
             <div class="exercise">
               <label for="name">Exercise Name:</label>
@@ -67,6 +78,7 @@
               <input type="number" name="resistance-duration" id="resistance-duration" placeholder="10" />
             </div>
           </div>
+          <!-- Buttons to add to a workout, or create a new workout -->
           <div class="buttons">
             <button disabled class="huge ui blue button complete">
               Complete
@@ -79,9 +91,11 @@
       </div>
     </div>
   </div>
+  <!-- Toast used to display that a workout was Successfully added -->
   <div id="toast">
     Workout Added Successfully!
   </div>
+  <!-- Javasctipt tags -->
   <script src="/api.js"></script>
   <script src="/exercise.js"></script>
 </body>

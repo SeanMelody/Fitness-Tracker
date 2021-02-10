@@ -1,3 +1,4 @@
+// Consts to select data from the html
 const workoutTypeSelect = document.querySelector("#type");
 const cardioForm = document.querySelector(".cardio-form");
 const resistanceForm = document.querySelector(".resistance-form");
@@ -17,6 +18,7 @@ const newWorkout = document.querySelector(".new-workout")
 let workoutType = null;
 let shouldNavigateAway = false;
 
+// Async function to show just create a workout if no data in the database
 async function initExercise() {
   let workout;
 
@@ -29,9 +31,10 @@ async function initExercise() {
   }
 
 }
-
+// Call the init function
 initExercise();
 
+// Function to change the display information from Cardio and Resistance
 function handleWorkoutTypeChange(event) {
   workoutType = event.target.value;
 
@@ -49,6 +52,7 @@ function handleWorkoutTypeChange(event) {
   validateInputs();
 }
 
+// Function to validate the inputs for resistance and cardio
 function validateInputs() {
   let isValid = true;
 
@@ -95,6 +99,7 @@ function validateInputs() {
   }
 }
 
+// Function to change the data Required from Cardio to Reistance
 async function handleFormSubmit(event) {
   event.preventDefault();
 
@@ -114,11 +119,14 @@ async function handleFormSubmit(event) {
     workoutData.duration = Number(resistanceDurationInput.value.trim());
   }
 
+  // Await the workout data
   await API.addExercise(workoutData);
   clearInputs();
+  // display that it was created correctly
   toast.classList.add("success");
 }
 
+// End the toast display
 function handleToastAnimationEnd() {
   toast.removeAttribute("class");
   if (shouldNavigateAway) {
@@ -126,6 +134,7 @@ function handleToastAnimationEnd() {
   }
 }
 
+// Clear the data so more can be entered
 function clearInputs() {
   cardioNameInput.value = "";
   nameInput.value = "";
@@ -137,6 +146,7 @@ function clearInputs() {
   weightInput.value = "";
 }
 
+// addingEvent Listeneres
 if (workoutTypeSelect) {
   workoutTypeSelect.addEventListener("change", handleWorkoutTypeChange);
 }

@@ -3,9 +3,12 @@
 
 <head>
   <meta charset="UTF-8" />
+  <!-- Meta tags for widths -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <!-- Ajax Link -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" />
+  <!-- CSS link -->
   <link rel="stylesheet" href="style.css" />
   <!-- FAVICON -->
   <link rel="icon" type="image/png" href="Favicon.png" />
@@ -14,25 +17,30 @@
 
 <body>
   <nav>
+    <!-- Links to the pages in the navbar-->
     <a href="/">Fitness Tracker</a>
     <a href="/stats">Dashboard</a>
   </nav>
   <div class="wrapper workout">
     <header>
+      <!-- Title -->
       <h1>Fitness Tracker</h1>
     </header>
+    <!-- Div to display the last workout -->
     <div class="ui container workout">
       <div class="ui raised card m-auto">
         <div class="prev-workout">
           <h3>Last Workout</h3>
           <div>
             <div class="workout-stats"></div>
+            <!-- Buttons to Continue a workout or stat a new one -->
             <div class="buttons">
               <a id="continue-btn" href="/exercise?" class="huge ui blue button">Continue Workout</a>
               <a href="/exercise" class="huge positive ui button">New Workout</a>
             </div>
           </div>
         </div>
+        <!-- If it is the first workout, just create -->
         <div class="new-workout">
           <h3>Create Your First Workout</h3>
         </div>
@@ -40,9 +48,11 @@
     </div>
   </div>
   </div>
+  <!-- Toast used to display that a workout was Successfully added -->
   <div id="toast">
     Workout Added Successfully!
   </div>
+  <!-- Javasctipt tags -->
   <script src="/api.js"></script>
   <script src="/workout.js"></script>
   <script src="/index.js"></script>

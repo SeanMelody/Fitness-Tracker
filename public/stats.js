@@ -1,3 +1,4 @@
+// Generate the data colors
 function generatePalette() {
   const arr = [
     '#003f5c',
@@ -21,24 +22,9 @@ function generatePalette() {
   return arr;
 }
 
+// Function to dispaly the data
 function populateChart(data) {
-  // console.log(data)
-  // console.log(data[0].exercises[0].duration)
-
-  // FOr loop to find total duration
-  // let durationTotal = 0
-  // for (let i = 0; i < data.length; i++) {
-  //   const looping = data[i];
-  //   exerciseDuration = looping.exercises[0].duration
-  //   durationTotal += exerciseDuration
-  //   console.log(durationTotal)
-  // }
-  // console.log(durationTotal)
-
-
   let durations = data.map(({ totalDuration }) => totalDuration);
-  // let durations = durationTotal;
-  // console.log(durations)
   let pounds = calculateTotalWeight(data);
   let workouts = workoutNames(data);
   const colors = generatePalette();
@@ -189,6 +175,7 @@ function populateChart(data) {
   });
 }
 
+// Functino to calcuate the weight
 function calculateTotalWeight(data) {
   let totals = [];
 
@@ -207,6 +194,7 @@ function calculateTotalWeight(data) {
   return totals;
 }
 
+// Function to get the workout names
 function workoutNames(data) {
   let workouts = [];
 
