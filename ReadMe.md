@@ -1,25 +1,17 @@
 # Fitness-Tracker 
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+https://powerful-ocean-82825.herokuapp.com/
+
+
+<img src="https://img.shields.io/badge/LICENSE-mit-green"/>
 
 ## Description
 
-    A MongoDB and Mongoose Database Powered Tracker for your daily Fitness Workouts
+    A MongoDB and Mongoose Database Powered Tracker for your daily Fitness Workouts.
 
+## Tech Stack
 
-## Table of Contents
-
-  [Description](##Description)
-
-  [Installation](##Installation)
-
-  [Usage](##Usage)
-
-  [License](##License)
-
-  [Contributing](##Contributing)
-
-  [Tests](##Tests)
+    MongoDB, Mongoose, Atlas, Morgan, JavaScript, HTML, CSS and Bootstrap
 
 
 ## Installation
@@ -34,13 +26,23 @@
 
     This application is covered under the MIT License
 
-## Contributing
-
-    Simply Fork and Git Pull
-
 ## Tests
 
     Run npm run seed to add the seed data
+
+
+ScreenShot Walk Through:
+
+![Fitness-Tracker-1](https://user-images.githubusercontent.com/68625400/107590173-5fc98c80-6bbc-11eb-9c45-8cf015fab36e.png)
+![Fitness-Tracker-2](https://user-images.githubusercontent.com/68625400/107590176-60fab980-6bbc-11eb-8ca4-9ebfcb0ba046.png)
+![Fitness-Tracker-3](https://user-images.githubusercontent.com/68625400/107590177-61935000-6bbc-11eb-866a-88dfcf251b5d.png)
+![Fitness-Tracker-4](https://user-images.githubusercontent.com/68625400/107590181-62c47d00-6bbc-11eb-9a7d-4d9bc6b99faf.png)
+
+
+Gif Walk Through:
+
+![Fitness-Tracker-Walkthrough](https://user-images.githubusercontent.com/68625400/107590185-648e4080-6bbc-11eb-90e6-c924f04354c4.gif)
+
 
 
 ## Questions?
