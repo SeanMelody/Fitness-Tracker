@@ -7,7 +7,10 @@ https://powerful-ocean-82825.herokuapp.com/
 
 ## Description
 
-    A MongoDB and Mongoose Database Powered Tracker for your daily Fitness Workouts.
+    A website to track your daily workouts!  Add A workout with multiple exercises, or add a new workout!
+    Your last workout will display to the index page,
+    Pick between Cardio or Resistance workouts, and add data.
+    See pie charts and graphs of your workouts on the Dashboard Page!
 
 ## Tech Stack
 
